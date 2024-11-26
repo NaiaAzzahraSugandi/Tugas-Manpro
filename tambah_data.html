@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tambah_data.css">
+    <title>Tambah Pegawai Baru</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="menu-item">
+                <a href="absensi.html"><span>Absensi Hari Ini</span></a>
+            </div>
+            <div class="menu-item">
+                <a href="laporan_gaji.html"><span>Laporan Gaji</span></a>
+            </div>
+            <div class="menu-item">
+                <a href="laporan_kehadiran.html"><span>Laporan Kehadiran</span></a>
+            </div>
+            <div class="menu-item">
+              Kelola Data
+          </div>
+          <!-- Sub-menu (selalu terlihat) -->
+          <div class="sub-menu" id="kelolaDataSubMenu">
+              <a href="tambah_data.html" class="sub-menu-item">Tambah Pegawai</a>
+              <a href="data_pegawai.html" class="sub-menu-item">Data Pegawai</a>
+              <a href="kelola_jabatan.html" class="sub-menu-item">Kelola Jabatan</a>
+          </div>            
+            <div class="menu-item sign-out">
+                <a href="kafe_selaras.html"><span>Sign Out</span></a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+              <h1>Tambah Pegawai Baru</h1>
+            </header>
+            <form>
+              <div class="form-group">
+                <label for="namaDepan">Nama Depan</label>
+                <input type="text" id="namaDepan" placeholder="e.g John">
+              </div>
+              <div class="form-group">
+                <label for="namaBelakang">Nama Belakang</label>
+                <input type="text" id="namaBelakang" placeholder="e.g Doe">
+              </div>
+              <div class="form-group">
+                <label for="nomorHp">Nomor Handphone</label>
+                <input type="text" id="nomorHp" placeholder="e.g 08123456789">
+              </div>
+              <div class="form-group">
+                <label for="kecamatan">Kecamatan</label>
+                <select id="kecamatan" onchange="updateKelurahan()">
+                  <option value="" disabled selected>Pilih Kecamatan</option>
+                  <option value="Astanaanyar">Astanaanyar</option>
+                  <option value="Babakan Ciparay">Babakan Ciparay</option>
+                  <option value="Bandung Wetan">Bandung Wetan</option>
+                  <option value="Batununggal">Batununggal</option>
+                  <option value="Cibiru">Cibiru</option>
+                  <option value="Cicendo">Cicendo</option>
+                  <option value="Kiaracondong">Kiaracondong</option>
+                  <option value="Lengkong">Lengkong</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="kelurahan">Kelurahan</label>
+                <select id="kelurahan" disabled>
+                  <option value="" disabled selected>Pilih Kelurahan</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="alamat">Alamat</label>
+                <input type="text" id="alamat" placeholder="e.g Jl. Merdeka no.141">
+              </div>
+              <div class="form-buttons">
+                <button type="submit" class="submit-button">Simpan</button>
+                <button type="button" class="cancel-button">Cancel</button>
+              </div>
+            </form>
+          </main>
+        </div>
+        <script>
+          // Data for Kecamatan and Kelurahan
+          const dataKecamatan = {
+            "Astanaanyar": ["Karanganyar", "Nyengseret", "Cibadak"],
+            "Babakan Ciparay": ["Babakan", "Sukahaji", "Margahayu Utara"],
+            "Bandung Wetan": ["Cihapit", "Citarum", "Tamansari"],
+            "Batununggal": ["Kebonwaru", "Maleer", "Binong"],
+            "Cibiru": ["Cipadung", "Palasari", "Pasirbiru"],
+            "Cicendo": ["Arjuna", "Husein Sastranegara", "Sukaraja"],
+            "Kiaracondong": ["Babakan Surabaya", "Sukapura", "Kebon Jayanti"],
+            "Lengkong": ["Cijagra", "Burangrang", "Malabar"]
+          };
+      
+          // Update Kelurahan Dropdown
+          function updateKelurahan() {
+            const kecamatan = document.getElementById("kecamatan").value;
+            const kelurahanDropdown = document.getElementById("kelurahan");
+            kelurahanDropdown.innerHTML = '<option value="" disabled selected>Pilih Kelurahan</option>';
+            kelurahanDropdown.disabled = false;
+      
+            if (dataKecamatan[kecamatan]) {
+              dataKecamatan[kecamatan].forEach(kelurahan => {
+                const option = document.createElement("option");
+                option.value = kelurahan;
+                option.textContent = kelurahan;
+                kelurahanDropdown.appendChild(option);
+              });
+            }
+          }
+
+        </script>
+</body>
+</html>
